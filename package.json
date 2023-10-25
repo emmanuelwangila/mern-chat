@@ -1,11 +1,14 @@
 {
   "name": "pep-chat",
   "version": "1.0.0",
-  "description": "chat application",
+  "description": "chat-application",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js"
   },
   "author": "Emmanuel Wangila",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }

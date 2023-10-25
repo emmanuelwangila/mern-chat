@@ -3,17 +3,17 @@ const { chats } = require("./data/data");
 
 const app = express();
 
-app.listen(5000, console.log("Server started at PORT 5000"));
-
 app.get("/", (req, res) => {
-  res.send("My first API running");
+  res.send("Your first Api in express");
 });
 
 app.get("/api/chat", (req, res) => {
   res.send(chats);
 });
 
-app.get("/api/chat/:id", (req, res) => {
-  const singleChat = chats.find((c) => c._id === req.params.id);
+app.get("/api/chat:id", (req, res) => {
+  const singleChat = (c) => c_id == req.params.c_id;
   res.send(singleChat);
 });
+
+app.listen(5000, console.log("Server started on PORT 5000"));
