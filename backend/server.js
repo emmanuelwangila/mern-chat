@@ -4,7 +4,7 @@ const { chats } = require("./data/data");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Your first Api in express");
+  res.send("Your first Api in express running succesfully ");
 });
 
 app.get("/api/chat", (req, res) => {
