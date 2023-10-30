@@ -37,15 +37,21 @@ function Home() {
         fontFamily={"monospace"}
       >
         <Tabs variant="soft-rounded" colorScheme="blue">
-          <TabList>
-            <Tab>Tab 1</Tab>
-            <Tab>Tab 2</Tab>
+          <TabList mb={"1em"}>
+            <Tab w={"50%"} color={"blue.500"}>
+              Sign-In
+            </Tab>
+            <Tab w={"50%"} color={"teal.500"}>
+              Sign -Up
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
+              <Login />
               <p>one!</p>
             </TabPanel>
             <TabPanel>
+              <SignUp />
               <p>two!</p>
             </TabPanel>
           </TabPanels>
