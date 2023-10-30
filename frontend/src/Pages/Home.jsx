@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Box, Text } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-
+import Login from "../components/Auth/Login";
+import SignUp from "../components/Auth/SignUp";
 function Home() {
   return (
     <Container maxW="xl" centerContent>
