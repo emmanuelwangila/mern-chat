@@ -18,24 +18,24 @@ const SignUp = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-      <FormControl id="FirstName" isRequired>
+      <FormControl id="Email" isRequired>
         <FormLabel> Email </FormLabel>
         <Input
-          placeholder={"Enter your Name"}
+          placeholder={"Enter your Email address"}
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-      <FormControl id="FirstName" isRequired>
+      <FormControl id="Password" isRequired>
         <FormLabel> Password </FormLabel>
         <Input
-          placeholder={"Enter your Name"}
+          placeholder={"Enter your Password"}
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-      <FormControl id="FirstName" isRequired>
+      <FormControl id="Password" isRequired>
         <FormLabel> Confirm Password </FormLabel>
         <Input
-          placeholder={"Enter your Name"}
+          placeholder={"Confirm your Password"}
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
