@@ -20,6 +20,8 @@ const SignUp = () => {
 
   const handleClick = () => setShow(!show);
 
+  const postDetails = (pic) => {};
+
   return (
     <VStack spacing={"5px"} color={"gray.500"}>
       <FormControl id="FirstName" isRequired>
@@ -66,6 +68,16 @@ const SignUp = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
+      </FormControl>
+
+      <FormControl>
+        <FormLabel>Add your profile pic</FormLabel>
+        <Input
+          type="file"
+          p={"1.5px"}
+          accept="image*/"
+          onChange={(e) => postDetails(e.target.files[0])}
+        />
       </FormControl>
     </VStack>
   );
