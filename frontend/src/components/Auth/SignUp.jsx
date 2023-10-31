@@ -79,6 +79,16 @@ const SignUp = () => {
           onChange={(e) => postDetails(e.target.files[0])}
         />
       </FormControl>
+
+      <Button
+        w={"100%"}
+        justifyContent={"center"}
+        colorScheme="blue"
+        borderRadius={"5px"}
+        textColor={"white"}
+      >
+        Sign Up
+      </Button>
     </VStack>
   );
 };
