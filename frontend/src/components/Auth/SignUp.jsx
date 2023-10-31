@@ -10,9 +10,30 @@ const SignUp = () => {
   const [pic, setpic] = useState();
 
   return (
-    <VStack spacing={"5px"} color={"gray.200"}>
+    <VStack spacing={"5px"} color={"gray.500"}>
       <FormControl id="FirstName" isRequired>
-        <FormLabel></FormLabel>
+        <FormLabel> Name </FormLabel>
+        <Input
+          placeholder={"Enter your Name"}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl id="FirstName" isRequired>
+        <FormLabel> Email </FormLabel>
+        <Input
+          placeholder={"Enter your Name"}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl id="FirstName" isRequired>
+        <FormLabel> Password </FormLabel>
+        <Input
+          placeholder={"Enter your Name"}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl id="FirstName" isRequired>
+        <FormLabel> Confirm Password </FormLabel>
         <Input
           placeholder={"Enter your Name"}
           onChange={(e) => setName(e.target.value)}
