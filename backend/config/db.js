@@ -9,9 +9,11 @@ const connectDB = async () => {
       }
     );
 
-    console.log(`MongoDB connected successfully ${conn.connection.host}`);
+    console.log(
+      `MongoDB connected successfully ${conn.connection.host}`.cyan.underline
+    );
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(`Error: ${error.message}`.red.bold);
   }
 };
 
