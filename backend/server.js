@@ -2,6 +2,7 @@ const express = require("express");
 const { chats } = require("./data/data");
 const connectDb = require("./config/db");
 const colors = require("colors");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
