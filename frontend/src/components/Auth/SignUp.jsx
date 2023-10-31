@@ -18,6 +18,8 @@ const SignUp = () => {
   const [confirmpassword, setconfirmpassword] = useState();
   const [pic, setpic] = useState();
 
+  const handleClick = () => setShow(!show);
+
   return (
     <VStack spacing={"5px"} color={"gray.500"}>
       <FormControl id="FirstName" isRequired>
@@ -36,25 +38,34 @@ const SignUp = () => {
       </FormControl>
       <FormControl id="Password" isRequired>
         <FormLabel> Password </FormLabel>
-        <InputGroup>
-          <InputRightElement w={"5px"}>
-            <Button h={"1.5rem"} size={"sm"}>
+        <InputGroup size={"md"}>
+          <Input
+            type={show ? "text" : "password"}
+            placeholder={"Enter your Password"}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <InputRightElement w={"4.5rem"}>
+            <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
               {show ? "Hide" : "Show"}
             </Button>
           </InputRightElement>
         </InputGroup>
-
-        <Input
-          placeholder={"Enter your Password"}
-          onChange={(e) => setName(e.target.value)}
-        />
       </FormControl>
+
       <FormControl id="Password" isRequired>
-        <FormLabel> Confirm Password </FormLabel>
-        <Input
-          placeholder={"Confirm your Password"}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <FormLabel> Password </FormLabel>
+        <InputGroup size={"md"}>
+          <Input
+            type={show ? "text" : "password"}
+            placeholder={"Confirm  Password"}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <InputRightElement w={"4.5rem"}>
+            <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
+              {show ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
       </FormControl>
     </VStack>
   );
