@@ -8,6 +8,8 @@ const app = express();
 
 connectDb();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Your first Api in express running succesfully ");
 });
