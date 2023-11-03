@@ -3,11 +3,12 @@ const { chats } = require("./data/data");
 const connectDb = require("./config/db");
 const colors = require("colors");
 const userRoutes = require("./routes/userRoutes");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 connectDb();
-
+// To accept JSON Data
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -16,4 +17,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRoutes);
 
-app.listen(5000, console.log("Server started on PORT 5000".green.bold));
+const PORT = process.env.PORT || 5000;
+
+app.listen(5000, console.log(`Server started on PORT ${PORT}`.green.bold));
