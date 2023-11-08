@@ -17,10 +17,15 @@ const SignUp = () => {
   const [password, setpassword] = useState();
   const [confirmpassword, setconfirmpassword] = useState();
   const [pic, setpic] = useState();
+  const [loding, setLoading] = useState(false);
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pic) => {};
+  const postDetails = (pic) => {
+    setLoading(true);
+    if (pic === undefined) {
+    }
+  };
 
   const submitHandler = () => {};
 
