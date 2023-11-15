@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
+import { useToast } from "@chakra-ui/react";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [confirmpassword, setconfirmpassword] = useState();
   const [pic, setpic] = useState();
   const [loding, setLoading] = useState(false);
+  const toast = useToast();
 
   const handleClick = () => setShow(!show);
 
