@@ -26,6 +26,26 @@ const SignUp = () => {
   const postDetails = (pic) => {
     setLoading(true);
     if (pic === undefined) {
+      toast({
+        title: "Please select an Image",
+        description: "add a  profile pic",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+
+    if (pic.type === "image/png" || "image/jpg") {
+      const data = new FormData();
+      data.append("file", pic);
+      data.append("upload_preset", "chat-app");
+      data.append("cloud_name", "drwhws1cc");
+      fetch("https://api.cloudinary.com/v1_1/drwhws1cc", {
+        method: "post",
+        body: data,
+      });
     }
   };
 
