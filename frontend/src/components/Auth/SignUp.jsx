@@ -23,9 +23,9 @@ const SignUp = () => {
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pic) => {
+  const postDetails = (pics) => {
     setLoading(true);
-    if (pic === undefined) {
+    if (pics === undefined) {
       toast({
         title: "Please select an Image",
         description: "add a  profile pic",
@@ -37,9 +37,9 @@ const SignUp = () => {
       return;
     }
 
-    if (pic.type === "image/png" || "image/jpg") {
+    if (pics.type === "image/png" || "image/jpg") {
       const data = new FormData();
-      data.append("file", pic);
+      data.append("file", pics);
       data.append("upload_preset", "chat-app");
       data.append("cloud_name", "drwhws1cc");
       fetch("https://api.cloudinary.com/v1_1/drwhws1cc", {
