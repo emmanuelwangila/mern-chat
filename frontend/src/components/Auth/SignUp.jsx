@@ -50,7 +50,20 @@ const SignUp = () => {
         .then((data) => {
           setPic(data.url.toString());
           setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
         });
+    } else {
+      toast({
+        title: "Please select an Image",
+        description: "add a  profile pic",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
     }
   };
 
