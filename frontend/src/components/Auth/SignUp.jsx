@@ -18,7 +18,7 @@ const SignUp = () => {
   const [password, setpassword] = useState();
   const [confirmpassword, setconfirmpassword] = useState();
   const [pic, setPic] = useState();
-  const [loding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
 
   const handleClick = () => setShow(!show);
@@ -134,6 +134,7 @@ const SignUp = () => {
         borderRadius={"5px"}
         textColor={"white"}
         onClick={submitHandler}
+        isLoading={loading}
       >
         Sign Up
       </Button>
