@@ -17,7 +17,7 @@ const SignUp = () => {
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [confirmpassword, setconfirmpassword] = useState();
-  const [pic, setpic] = useState();
+  const [pic, setPic] = useState();
   const [loding, setLoading] = useState(false);
   const toast = useToast();
 
@@ -45,7 +45,12 @@ const SignUp = () => {
       fetch("https://api.cloudinary.com/v1_1/drwhws1cc", {
         method: "post",
         body: data,
-      });
+      })
+        .then((res) => res.json)
+        .then((data) => {
+          setPic(data.url.toString());
+          setLoading(false);
+        });
     }
   };
 
