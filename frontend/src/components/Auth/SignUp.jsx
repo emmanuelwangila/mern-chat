@@ -40,9 +40,9 @@ const SignUp = () => {
     if (pics.type === "image/png" || "image/jpg") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
+      data.append("upload_preset", "mern-chat-app");
       data.append("cloud_name", "drwhws1cc");
-      fetch("https://api.cloudinary.com/v1_1/drwhws1cc", {
+      fetch("https://api.cloudinary.com/v1_1/drwhws1cc/image/upload", {
         method: "post",
         body: data,
       })
