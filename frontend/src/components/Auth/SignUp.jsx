@@ -121,7 +121,7 @@ const SignUp = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder={"Confirm  Password"}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setconfirmpassword(e.target.value)}
           />
           <InputRightElement w={"4.5rem"}>
             <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
