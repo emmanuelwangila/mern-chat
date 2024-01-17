@@ -67,7 +67,21 @@ const SignUp = () => {
     }
   };
 
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    setLoading(true);
+    if (!name || !email || !password || !confirmpassword) {
+      toast({
+        title: "Please fill in the details",
+        description: "add email, password, name",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+  };
 
   return (
     <VStack spacing={"5px"} color={"gray.500"}>
@@ -82,7 +96,7 @@ const SignUp = () => {
         <FormLabel> Email </FormLabel>
         <Input
           placeholder={"Enter your Email address"}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setemail(e.target.value)}
         />
       </FormControl>
       <FormControl id="Password" isRequired>
@@ -91,7 +105,7 @@ const SignUp = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder={"Enter your Password"}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setpassword(e.target.value)}
           />
           <InputRightElement w={"4.5rem"}>
             <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
