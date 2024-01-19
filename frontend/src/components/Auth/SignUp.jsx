@@ -81,6 +81,14 @@ const SignUp = () => {
       setLoading(false);
       return;
     }
+
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+    } catch (error) {}
   };
 
   return (
