@@ -10,6 +10,8 @@ import {
 import React from "react";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
+import axios from "axios";
+import { config } from "dotenv";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -88,7 +90,28 @@ const SignUp = () => {
           "Content-type": "application/json",
         },
       };
-    } catch (error) {}
+
+      const { data } = await axios.post(
+        "/api/user",
+        { name, email, password, pic },
+        config
+      );
+
+      toast({
+        title: "Complete Registartion",
+        description: "Regestration succesfully",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      history.push("/chats");
+    } catch (error) {
+      console.error("error posting the data");
+    }
   };
 
   return (
