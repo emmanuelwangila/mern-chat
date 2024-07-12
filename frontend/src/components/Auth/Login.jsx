@@ -83,17 +83,19 @@ const Login = () => {
       <FormControl id="Email" isRequired>
         <label className="text-blue-500 font-sans m-2 ">Email </label>
         <Input
-          className="font-sans text-sm "
+          className="font-sans text-sm  m-2 "
           placeholder={"enter your email address"}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
       <FormControl id="Password" isRequired>
-        <FormLabel> Password </FormLabel>
+        <label className="text-blue-500 font-sans m-2 "> Password </label>
+
         <InputGroup size={"md"}>
           <Input
+            className="font-sans text-sm m-2  "
             type={show ? "text" : "password"}
-            placeholder={"Enter your Password"}
+            placeholder={"enter your password"}
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement w={"4.5rem"}>
@@ -105,9 +107,13 @@ const Login = () => {
       </FormControl>
 
       <FormControl id="Password" isRequired>
-        <FormLabel> Password </FormLabel>
+        <label className="text-blue-500 font-sans m-2  ">
+          {" "}
+          Confirm Password{" "}
+        </label>
         <InputGroup size={"md"}>
           <Input
+            className="font-sans text-sm m-2 "
             type={show ? "text" : "password"}
             placeholder={"Confirm  Password"}
             onChange={(e) => setconfirmPassword(e.target.value)}
