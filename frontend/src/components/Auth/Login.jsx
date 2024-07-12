@@ -81,7 +81,7 @@ const Login = () => {
   return (
     <div spacing={"5px"} color={"gray.500"}>
       <FormControl id="Email" isRequired>
-        <FormLabel> Email </FormLabel>
+        <label className="text-blue-500 font-sans m-2 ">Email </label>
         <Input
           placeholder={"Enter your Email address"}
           onChange={(e) => setEmail(e.target.value)}
@@ -119,7 +119,7 @@ const Login = () => {
         </InputGroup>
       </FormControl>
 
-      <button className="bg-blue-500 m-2 p-3 text-red-500 flex justify-center ">
+      <button className="bg-blue-500 m-2 p-3 text-white  flex rounded-md font-sans   mx-auto">
         {" "}
         Sign In{" "}
       </button>
