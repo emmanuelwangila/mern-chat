@@ -79,7 +79,7 @@ const Login = () => {
   };
 
   return (
-    <div spacing={"5px"} color={"gray.500"}>
+    <div className="" spacing={"5px"} color={"gray.500"}>
       <FormControl id="Email" isRequired>
         <label className="text-blue-500 font-sans m-2 ">Email </label>
         <Input
@@ -126,7 +126,7 @@ const Login = () => {
         </InputGroup>
       </FormControl>
 
-      <button className="bg-blue-500 m-2 p-3 text-white  flex rounded-md font-sans   mx-auto">
+      <button className="bg-green-500   m-2 p-3 text-white  flex rounded-md font-sans   mx-auto">
         {" "}
         Sign In{" "}
       </button>
