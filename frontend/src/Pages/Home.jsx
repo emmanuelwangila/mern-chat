@@ -49,11 +49,9 @@ function Home() {
           <TabPanels>
             <TabPanel>
               <Login />
-              <p>one!</p>
             </TabPanel>
             <TabPanel>
               <SignUp />
-              <p>two!</p>
             </TabPanel>
           </TabPanels>
         </Tabs>
