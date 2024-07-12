@@ -39,10 +39,18 @@ function Home() {
       >
         <Tabs variant="soft-rounded" colorScheme="blue">
           <TabList mb={"1em"}>
-            <Tab w={"50%"} color={"blue.500"}>
+            <Tab
+              w={"50%"}
+              color={"blue.500"}
+              className="border border-blue-500 rounded-md m-2 "
+            >
               Sign-In
             </Tab>
-            <Tab w={"50%"} color={"teal.500"}>
+            <Tab
+              w={"50%"}
+              color={"teal.500"}
+              className="border border-blue-500 m-2  "
+            >
               Sign -Up
             </Tab>
           </TabList>
