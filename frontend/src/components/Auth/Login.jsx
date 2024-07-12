@@ -79,7 +79,7 @@ const Login = () => {
   };
 
   return (
-    <VStack spacing={"5px"} color={"gray.500"}>
+    <div spacing={"5px"} color={"gray.500"}>
       <FormControl id="Email" isRequired>
         <FormLabel> Email </FormLabel>
         <Input
@@ -119,18 +119,11 @@ const Login = () => {
         </InputGroup>
       </FormControl>
 
-      <Button
-        w={"100%"}
-        justifyContent={"center"}
-        colorScheme="blue"
-        borderRadius={"5px"}
-        textColor={"white"}
-        onClick={submitHandler}
-        isLoading={loading}
-      >
-        Sign In
-      </Button>
-    </VStack>
+      <button className="bg-blue-500 m-2 p-3 text-red-500 flex justify-center ">
+        {" "}
+        Sign In{" "}
+      </button>
+    </div>
   );
 };
 
