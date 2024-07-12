@@ -83,7 +83,8 @@ const Login = () => {
       <FormControl id="Email" isRequired>
         <label className="text-blue-500 font-sans m-2 ">Email </label>
         <Input
-          placeholder={"Enter your Email address"}
+          className="font-sans text-sm "
+          placeholder={"enter your email address"}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
