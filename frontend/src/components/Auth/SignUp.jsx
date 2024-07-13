@@ -173,17 +173,13 @@ const SignUp = () => {
         />
       </FormControl>
 
-      <Button
-        w={"100%"}
-        justifyContent={"center"}
-        colorScheme="blue"
-        borderRadius={"5px"}
-        textColor={"white"}
+      <button
         onClick={submitHandler}
-        isLoading={loading}
+        className="bg-green-500 justify-center   m-2 p-3 text-white  flex rounded-md font-sans w-full   mx-auto"
       >
-        Sign Up
-      </Button>
+        {" "}
+        Sign Up{" "}
+      </button>
     </VStack>
   );
 };
