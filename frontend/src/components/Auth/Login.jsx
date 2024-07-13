@@ -128,6 +128,7 @@ const Login = () => {
 
       <button
         onClick={submitHandler}
+        loading={loading}
         className="bg-green-500 justify-center   m-2 p-3 text-white  flex rounded-md font-sans w-full   mx-auto"
       >
         {" "}
