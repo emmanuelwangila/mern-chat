@@ -81,19 +81,19 @@ const Login = () => {
   return (
     <div className="" spacing={"5px"} color={"gray.500"}>
       <FormControl id="Email" isRequired>
-        <label className="text-blue-500 font-sans m-2 ">Email </label>
+        <FormLabel className="text-blue-500 font-sans "> Email </FormLabel>
         <Input
-          className="font-sans text-sm  m-2 "
+          className="font-sans text-sm   "
           placeholder={"enter your email address"}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
       <FormControl id="Password" isRequired>
-        <label className="text-blue-500 font-sans m-2 "> Password </label>
+        <FormLabel className="text-blue-500 font-sans "> Password </FormLabel>
 
         <InputGroup size={"md"}>
           <Input
-            className="font-sans text-sm m-2  "
+            className="font-sans text-sm  "
             type={show ? "text" : "password"}
             placeholder={"enter your password"}
             onChange={(e) => setPassword(e.target.value)}
@@ -107,13 +107,13 @@ const Login = () => {
       </FormControl>
 
       <FormControl id="Password" isRequired>
-        <label className="text-blue-500 font-sans m-2  ">
+        <FormLabel className="text-blue-500 font-sans ">
           {" "}
           Confirm Password{" "}
-        </label>
+        </FormLabel>
         <InputGroup size={"md"}>
           <Input
-            className="font-sans text-sm m-2 "
+            className="font-sans text-sm  "
             type={show ? "text" : "password"}
             placeholder={"Confirm  Password"}
             onChange={(e) => setconfirmPassword(e.target.value)}
