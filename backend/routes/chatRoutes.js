@@ -3,7 +3,7 @@ const { protect } = require("../middlewear/authMiddlewear");
 
 const router = express.Router();
 
-// router.route("/").post(protect, accessChat);
+router.route("/").post(protect, accessChat);
 // router.route("/").get(protect, fetchChat);
 // router.route("/group").post(protect, createGroupChat);
 // router.route("/rename").put(protect, renameGroupChat);
