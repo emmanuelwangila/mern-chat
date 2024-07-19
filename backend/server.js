@@ -3,6 +3,7 @@ const { chats } = require("./data/data");
 const connectDb = require("./config/db");
 const colors = require("colors");
 const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 const dotenv = require("dotenv");
 const { notFound, errorHandler } = require("./middlewear/errorMiddlewear");
 dotenv.config();
