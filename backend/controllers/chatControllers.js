@@ -9,5 +9,11 @@ const accessChat = asyncHandler(async (req, res, next) => {
     throw new Error("Please rovide user Id");
   }
 
-  var isChat = await Chat.find({});
+  var isChat = await Chat.find({
+    isGroupChat: false,
+    $and: [
+      { users: { $elemMatch: { $eq: req.user._id } } },
+      { users: { $elemMatch: { $eq: userId } } },
+    ],
+  });
 });
