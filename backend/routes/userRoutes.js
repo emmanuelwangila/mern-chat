@@ -6,7 +6,7 @@ const {
 } = require("../controllers/userControllers");
 
 const router = express.Router();
-const protect = require("../middlewear/authMiddlewear");
+const { protect } = require("../middlewear/authMiddlewear");
 
 router.route("/").post(registerUser).get(protect, allUsers);
 
