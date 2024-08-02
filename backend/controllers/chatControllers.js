@@ -6,7 +6,7 @@ const accessChat = asyncHandler(async (req, res, next) => {
 
   if (!userId) {
     res.status(400);
-    throw new Error("Please rovide user Id");
+    throw new Error("Please provide user Id");
   }
 
   var isChat = await Chat.find({
