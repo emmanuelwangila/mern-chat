@@ -108,6 +108,16 @@ const createGroupChat = asyncHandler(async (req, res) => {
 
 const updateGroupChat = asyncHandler(async (req, res) => {
   const { chatId, chatName } = req.body;
+
+  const updatedChat = Chat.findByIdAndUpdate(
+    chatId,
+    {
+      chatName,
+    },
+    {
+      new: true,
+    }
+  );
 });
 
 module.exports = { accessChat, getAllChats, createGroupChat };
