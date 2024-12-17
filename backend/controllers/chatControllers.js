@@ -47,4 +47,8 @@ const accessChat = asyncHandler(async (req, res, next) => {
   }
 });
 
+const getAllChats = asyncHandler(async (req, res) => {
+  const chats = await Chat.find({});
+});
+
 module.exports = { accessChat };
