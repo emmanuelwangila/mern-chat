@@ -73,7 +73,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
     return res.status(400).send({ message: "Please enter the users and name" });
   }
 
-  let users = JSON.parse(req.body.users);
+  let users = req.body.users;
 
   if (!Array.isArray(users) || users.length < 2) {
     return res
