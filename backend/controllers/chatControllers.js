@@ -129,4 +129,25 @@ const updateGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
+const addGroupChat = asyncHandler(async (req, res) => {
+  const { chatId, userId } = req.body;
+  const trimeedChatId = chatId.trim();
+  const addedChat = await Chat.findByIdAndUpdate(
+    trimeedChatId,
+    {
+      $push: { users: userId },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+  if (!addedChat) {
+    return res.status(404).send({ message: "Chat not found" });
+  } else {
+    res.status(200).send({ message: "User added to chat succesfully" });
+  }
+});
+
 module.exports = { accessChat, getAllChats, createGroupChat, updateGroupChat };
