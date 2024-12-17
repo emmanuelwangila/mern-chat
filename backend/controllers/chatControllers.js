@@ -68,6 +68,18 @@ const getAllChats = asyncHandler(async (req, res) => {
   }
 });
 
-const createGroupChat = asyncHandler(async (req, res) => {});
+const createGroupChat = asyncHandler(async (req, res) => {
+  if (!req.body.users || !req.body.name) {
+    return res.status(400).send({ message: "Please enter the users and name" });
+  }
+
+  let users = JSON.parse(req.body.users);
+
+  if (!Array.isArray(users) || users.length < 2) {
+    return res
+      .status(400)
+      .send({ message: "Group chat requires more than two users" });
+  }
+});
 
 module.exports = { accessChat, getAllChats };
