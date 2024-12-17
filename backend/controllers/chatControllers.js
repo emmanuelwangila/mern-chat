@@ -117,7 +117,14 @@ const updateGroupChat = asyncHandler(async (req, res) => {
     {
       new: true,
     }
-  );
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+  if (!updatedChat) {
+    return res.status(404).send({ message: "Chat not found" });
+  } else {
+    res.status(200).send({ message: "Chat updated succesfully", updatedChat });
+  }
 });
 
-module.exports = { accessChat, getAllChats, createGroupChat };
+module.exports = { accessChat, getAllChats, createGroupChat, updateGroupChat };
