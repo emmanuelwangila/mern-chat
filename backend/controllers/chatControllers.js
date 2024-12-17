@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel.jsx");
 const User = require("../models/userModel.js");
+const { populate } = require("dotenv");
 
 const accessChat = asyncHandler(async (req, res, next) => {
   const { userId } = req.body;
@@ -49,12 +50,22 @@ const accessChat = asyncHandler(async (req, res, next) => {
 
 const getAllChats = asyncHandler(async (req, res) => {
   try {
-    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } }).then(
-      (result) => {
-        res.status(200).send(result);
-      }
-    );
-  } catch (error) {}
+    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password")
+      .populate("latestMessage")
+      .sort({ updatedAt: -1 })
+      .then(async (results) => {
+        results = await User.populate(results, {
+          path: "latestMessage.sender",
+          select: "name pic email",
+        });
+        res.status(200).send(results);
+      });
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
 });
 
 module.exports = { accessChat, getAllChats };
