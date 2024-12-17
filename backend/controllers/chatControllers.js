@@ -48,7 +48,13 @@ const accessChat = asyncHandler(async (req, res, next) => {
 });
 
 const getAllChats = asyncHandler(async (req, res) => {
-  const chats = await Chat.find({});
+  try {
+    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } }).then(
+      (result) => {
+        res.status(200).send(result);
+      }
+    );
+  } catch (error) {}
 });
 
-module.exports = { accessChat };
+module.exports = { accessChat, getAllChats };
