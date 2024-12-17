@@ -96,10 +96,10 @@ const createGroupChat = asyncHandler(async (req, res) => {
       .populate("groupAdmin", "-password")
       .populate("latestMessage");
 
-    res
-      .status(201)
-      .json(fullChat)
-      .sendStatusMessage({ message: "Chat created succesfully" });
+    res.status(201).json({
+      message: "Group chat data created succesfully",
+      chat: fullChat,
+    });
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
