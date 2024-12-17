@@ -146,7 +146,9 @@ const addGroupChat = asyncHandler(async (req, res) => {
   if (!addedChat) {
     return res.status(404).send({ message: "Chat not found" });
   } else {
-    res.status(200).send({ message: "User added to chat succesfully" });
+    res
+      .status(200)
+      .send({ message: "User added to chat succesfully", addedChat });
   }
 });
 
@@ -158,7 +160,7 @@ const removeGroupChat = asyncHandler(async (req, res) => {
   const removedChat = await Chat.findByIdAndUpdate(
     trimeedChatId,
     {
-      $pull: { users: usersId },
+      $pull: { users: userId },
     },
     {
       new: true,
