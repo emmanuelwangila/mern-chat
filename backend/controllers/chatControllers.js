@@ -156,4 +156,5 @@ module.exports = {
   createGroupChat,
   updateGroupChat,
   addGroupChat,
+  removeGroupChat,
 };
