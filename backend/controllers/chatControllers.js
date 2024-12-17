@@ -80,6 +80,17 @@ const createGroupChat = asyncHandler(async (req, res) => {
       .status(400)
       .send({ message: "Group chat requires more than two users" });
   }
+
+  users.push(req.user);
+
+  try {
+    const groupChat = await Chat.create({
+      chatName: req.body.name,
+      isGroupChat: true,
+      users: users,
+      groupAdmin: req.user,
+    });
+  } catch (error) {}
 });
 
 module.exports = { accessChat, getAllChats };
