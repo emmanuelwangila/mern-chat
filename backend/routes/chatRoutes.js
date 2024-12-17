@@ -6,6 +6,7 @@ const {
   createGroupChat,
   updateGroupChat,
   addGroupChat,
+  removeGroupChat,
 } = require("../controllers/chatControllers");
 
 const router = express.Router();

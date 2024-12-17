@@ -150,6 +150,8 @@ const addGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
+const removeGroupChat = asyncHandler(async (req, res) => {});
+
 module.exports = {
   accessChat,
   getAllChats,
