@@ -90,7 +90,20 @@ const createGroupChat = asyncHandler(async (req, res) => {
       users: users,
       groupAdmin: req.user,
     });
-  } catch (error) {}
+
+    const fullChat = await Chat.findOne({ _id: groupChat._id })
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password")
+      .populate("latestMessage");
+
+    res
+      .status(201)
+      .json(fullChat)
+      .sendStatusMessage({ message: "Chat created succesfully" });
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
 });
 
 module.exports = { accessChat, getAllChats };
