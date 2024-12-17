@@ -150,7 +150,29 @@ const addGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
-const removeGroupChat = asyncHandler(async (req, res) => {});
+const removeGroupChat = asyncHandler(async (req, res) => {
+  const { chatId, userId } = req.body;
+
+  const trimeedChatId = chatId.trim();
+
+  const removedChat = await Chat.findByIdAndUpdate(
+    trimeedChatId,
+    {
+      $pull: { users: usersId },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  if (!removedChat) {
+    return res.status(404).send({ message: " Chat not found" });
+  } else {
+    return res.status(200).send({ message: "Chat removed succesfully" });
+  }
+});
 
 module.exports = {
   accessChat,
