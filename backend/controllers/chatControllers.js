@@ -172,7 +172,9 @@ const removeGroupChat = asyncHandler(async (req, res) => {
   if (!removedChat) {
     return res.status(404).send({ message: " Chat not found" });
   } else {
-    return res.status(200).send({ message: "Chat removed succesfully" });
+    return res
+      .status(200)
+      .send({ message: "Chat removed succesfully", removedChat });
   }
 });
 
