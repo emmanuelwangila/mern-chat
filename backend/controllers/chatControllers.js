@@ -109,8 +109,10 @@ const createGroupChat = asyncHandler(async (req, res) => {
 const updateGroupChat = asyncHandler(async (req, res) => {
   const { chatId, chatName } = req.body;
 
-  const updatedChat = Chat.findByIdAndUpdate(
-    chatId,
+  const trimeedChatId = chatId.trim();
+
+  const updatedChat = await Chat.findByIdAndUpdate(
+    trimeedChatId,
     {
       chatName,
     },
