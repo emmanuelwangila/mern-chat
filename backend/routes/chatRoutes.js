@@ -1,6 +1,10 @@
 const express = require("express");
 const { protect } = require("../middlewear/authMiddlewear");
-const { accessChat, getAllChats } = require("../controllers/chatControllers");
+const {
+  accessChat,
+  getAllChats,
+  createGroupChat,
+} = require("../controllers/chatControllers");
 
 const router = express.Router();
 
