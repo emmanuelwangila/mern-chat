@@ -4,7 +4,11 @@ import { createContext, useContext, useState } from "react";
 const chatContext = createContext();
 
 const chatProvider = ({ children }) => {
-  <chatContext.Provider>{children}</chatContext.Provider>;
+  const [user, setUser] = useState();
+
+  <chatContext.Provider value={{ user, setUser }}>
+    {children}
+  </chatContext.Provider>;
 };
 
 export const chatState = () => {
