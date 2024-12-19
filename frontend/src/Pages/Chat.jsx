@@ -1,25 +1,18 @@
 // import React, { useEffect } from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { useChatState } from "../Context/ChatProvider";
+import SideBar from "../components/chats/SideBar";
+import MyChats from "../components/chats/MyChats";
+import ChatInputBody from "../components/chats/ChatInputBody";
 function Chat() {
-  const [chats, setChats] = useState([]);
-
-  const fetchChats = async () => {
-    const { data } = await axios.get("/api/chat");
-    setChats(data);
-  };
-
-  useEffect(() => {
-    fetchChats();
-  }, []);
+  const { user } = useChatState();
 
   return (
-    <div>
-      {" "}
-      {chats.map((chat) => (
-        <div key={chat._id}> {chat.chatName} </div>
-      ))}{" "}
+    <div className="w-[100%] flex fot-sans  bg-slate-100 m-3 p-3 rounded-md text-blue-500">
+      {user && <SideBar />}
+      {user && <MyChats />}
+      {user && <ChatInputBody />}
     </div>
   );
 }
