@@ -9,7 +9,7 @@ function Chat() {
   const { user } = useChatState();
 
   return (
-    <div className="w-[100%] bg-slate-100 m-3 p-3 rounded-md text-blue-500">
+    <div className="w-[100%] flex fot-sans  bg-slate-100 m-3 p-3 rounded-md text-blue-500">
       {user && <SideBar />}
       {user && <MyChats />}
       {user && <ChatInputBody />}
