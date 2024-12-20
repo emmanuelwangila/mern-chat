@@ -13,8 +13,8 @@ const SideBar = () => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search"
-          className="p-2 rounded-md w-full"
+          placeholder="Serach for chats"
+          className="p-2 rounded-md w-3/4"
         />
       </div>
       <div className="mt-2">
