@@ -1,8 +1,13 @@
-import { React } from "react";
+import { React, useState } from "react";
 
 const SideBar = () => {
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loadingChat, setLoadingChat] = useState();
+
   return (
-    <div className="w-full h-full m-2 p-2">
+    <div className="m-2 ">
       <h1>SideBar</h1>
     </div>
   );
