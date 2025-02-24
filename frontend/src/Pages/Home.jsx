@@ -22,7 +22,7 @@ function Home() {
         m="5px"
         p="15px"
         borderRadius={"md"}
-        textColor={"blue.500"}
+        textColor={"yellow.600"}
         w="100%"
       >
         <Text
@@ -32,7 +32,7 @@ function Home() {
           mx={"auto"}
         >
           {" "}
-          Kujuana Chat
+          Bumble Chat
         </Text>
       </Box>
 
