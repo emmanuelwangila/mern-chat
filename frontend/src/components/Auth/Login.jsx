@@ -25,8 +25,6 @@ const Login = () => {
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pic) => {};
-
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password || !confirmpassword) {
@@ -68,7 +66,7 @@ const Login = () => {
     } catch (error) {
       toast({
         title: "Error  Login",
-        description: "Something went wrong try again",
+        description: "Wrong email or password",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -125,8 +123,8 @@ const Login = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      
-      <div> { 2 * 5} </div>
+
+      <div> {2 * 5} </div>
 
       <button
         onClick={submitHandler}
