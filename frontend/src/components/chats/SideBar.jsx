@@ -22,14 +22,14 @@ const SideBar = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const history = useHistory();
+
   const logOut = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
 
   const handleSearch = () => {};
-
-  const history = useHistory();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -47,12 +47,15 @@ const SideBar = () => {
         </div>
         <div className="flex justify-end items-center space-x-4 relative">
           <FaBell className="m-2" />
-          <FaUserPlus
-            className="m-2 cursor-pointer"
-            onClick={toggleDropdown}
-            name={user.name}
-            src={user.pic}
-          />
+          {user && (
+            <FaUserPlus
+              className="m-2 cursor-pointer"
+              onClick={toggleDropdown}
+              name={user.name}
+              src={user.pic}
+            />
+          )}
+
           {isDropdownOpen && (
             <div
               className="absolute right-0 bg-white shadow-md rounded-md p-2 w-40 text-sm z-10"
@@ -91,16 +94,14 @@ const SideBar = () => {
           onClick={() => setSearchModalOpen(true)}
         />
         {isSearchModalOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50"
-            onClick={() => setSearchModalOpen(false)}
-          ></div>
+          <div className="" onClick={() => setSearchModalOpen(false)}></div>
         )}
 
         {isSearchModalOpen && (
-          <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-md z-20">
+          <div className=" w-[40%] h-screen rounded-md  bg-white p-4 shadow-md z-20">
             <div className="flex justify-between items-center">
               <input
+                onClick={() => setSearchModalOpen(true)}
                 type="text"
                 onChange={handleSearch}
                 value={search}
