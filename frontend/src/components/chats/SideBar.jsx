@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
-  const [result, setResult] = useState([]);
+  const [filteredChats, setFilteredChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadChat, setLoadChat] = useState();
 
@@ -22,6 +22,16 @@ const SideBar = () => {
   const logOut = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
+  };
+
+  const handleChats = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearch(query);
+
+    const filtered = chats.filter((chat) =>
+      chat.name.toLowerCase().includes(query)
+    );
+    setFilteredChats(filtered);
   };
 
   const history = useHistory();
@@ -85,7 +95,7 @@ const SideBar = () => {
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleChats}
           className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           placeholder="Search chats"
         />
