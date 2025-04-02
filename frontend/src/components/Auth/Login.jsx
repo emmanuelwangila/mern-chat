@@ -54,13 +54,13 @@ const Login = () => {
 
       toast({
         title: "Complete Login",
-        description: "You have SUccesfully logged In",
-        status: "succes",
+        description: "You have Succesfully logged In",
+        status: "success",
         duration: 4000,
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("UserINfo", JSON.stringify(data));
+      localStorage.setItem("UserInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
     } catch (error) {

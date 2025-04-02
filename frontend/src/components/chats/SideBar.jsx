@@ -5,6 +5,7 @@ import { FaUserPlus } from "react-icons/fa";
 import { useChatState } from "../../Context/ChatProvider";
 
 import ProfileModel from "./ProfileModel";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
@@ -17,6 +18,13 @@ const SideBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const logOut = () => {
+    localStorage.removeItem("userInfo");
+    history.push("/");
+  };
+
+  const history = useHistory();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -61,7 +69,10 @@ const SideBar = () => {
                   isOpen={isProfileOpen}
                   onClose={() => setIsProfileOpen(false)}
                 />
-                <li className="cursor-pointer hover:bg-gray-100 p-1 flex items-center">
+                <li
+                  className="cursor-pointer hover:bg-gray-100 p-1 flex items-center"
+                  onClick={logOut}
+                >
                   LogOut
                 </li>
               </ul>
