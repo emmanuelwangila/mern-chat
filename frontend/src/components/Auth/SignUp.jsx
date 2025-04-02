@@ -175,14 +175,16 @@ const SignUp = () => {
         />
       </FormControl>
 
-      <button
+      <Button
         onClick={submitHandler}
-        loading={loading}
+        colorScheme="green"
+        size="md"
+        isLoading={loading}
         className="bg-green-500 justify-center   m-2 p-3 text-white  flex rounded-md font-sans w-full   mx-auto"
       >
         {" "}
         Sign Up{" "}
-      </button>
+      </Button>
     </VStack>
   );
 };

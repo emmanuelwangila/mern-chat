@@ -126,14 +126,16 @@ const Login = () => {
 
       <div> {2 * 5} </div>
 
-      <button
+      <Button
         onClick={submitHandler}
-        loading={loading}
+        isLoading={loading}
+        colorScheme="green"
+        size="md"
         className="bg-green-500 justify-center   m-2 p-3 text-white  flex rounded-md font-sans w-full   mx-auto"
       >
         {" "}
         Sign In{" "}
-      </button>
+      </Button>
     </VStack>
   );
 };

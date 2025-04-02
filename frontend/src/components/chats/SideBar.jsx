@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { useChatState } from "../../Context/ChatProvider";
@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const SideBar = () => {
   const [search, setSearch] = useState("");
   const [filteredChats, setFilteredChats] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [loading, setLoading] = useState(false);
   const [loadChat, setLoadChat] = useState();
 
@@ -24,16 +25,6 @@ const SideBar = () => {
     history.push("/");
   };
 
-  const handleChats = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearch(query);
-
-    const filtered = chats.filter((chat) =>
-      chat.name.toLowerCase().includes(query)
-    );
-    setFilteredChats(filtered);
-  };
-
   const history = useHistory();
 
   const toggleDropdown = () => {
@@ -43,6 +34,17 @@ const SideBar = () => {
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
+
+  if (!isSidebarOpen) {
+    return (
+      <button
+        onClick={() => setIsSidebarOpen(true)}
+        className="fixed top-4 left-4 bg-blue-500 text-white p-2 rounded-md "
+      >
+        Open Sidebar
+      </button>
+    );
+  }
 
   return (
     <div className="lg:flex-col md:flex-col sm:flex-wrap w-full h-full m-2 p-2">
@@ -95,10 +97,15 @@ const SideBar = () => {
         <input
           type="text"
           value={search}
-          onChange={handleChats}
           className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           placeholder="Search chats"
         />
+        <button
+          onClick={() => setIsSidebarOpen(false)}
+          className="absolute right-4 top-1/2  transform -translate-y-1/2 bg-red-500 text-white px-3 py-1 rounded-md "
+        >
+          <FaTimes />
+        </button>
       </div>
     </div>
   );
