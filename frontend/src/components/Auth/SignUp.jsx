@@ -133,7 +133,7 @@ const SignUp = () => {
       toast({
         title: "Complete Registartion",
         description: "Regestration succesfully",
-        status: "succes",
+        status: "success",
         duration: 4000,
         isClosable: true,
         position: "bottom",

@@ -11,6 +11,8 @@ const SideBar = () => {
   const [search, setSearch] = useState("");
   const [filteredChats, setFilteredChats] = useState([]);
 
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -24,6 +26,8 @@ const SideBar = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
+
+  const handleSearch = () => {};
 
   const history = useHistory();
 
@@ -104,7 +108,7 @@ const SideBar = () => {
                 placeholder="Search chats"
               />
               <button
-                onClick={() => setIsSearchModalOpen(false)}
+                onClick={() => setSearchModalOpen(false)}
                 className="ml-2 bg-red-500 text-white p-2 rounded-full"
               >
                 <FaTimes />
