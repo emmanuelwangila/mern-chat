@@ -4,6 +4,8 @@ import { FaBell } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { useChatState } from "../../Context/ChatProvider";
 
+import ProfileModel from "./ProfileModel";
+
 const SideBar = () => {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
@@ -13,6 +15,8 @@ const SideBar = () => {
   const { user } = useChatState();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -42,7 +46,10 @@ const SideBar = () => {
               onMouseLeave={closeDropdown}
             >
               <ul>
-                <li className="cursor-pointer hover:bg-gray-100 p-1 flex items-center">
+                <li
+                  className="cursor-pointer hover:bg-gray-100 p-1 flex items-center"
+                  onClick={() => setIsProfileOpen(true)}
+                >
                   <img
                     src={user.pic}
                     className="w-5 h-5 rounded-full mr-2"
@@ -50,6 +57,10 @@ const SideBar = () => {
                   />
                   My Profile
                 </li>
+                <ProfileModel
+                  isOpen={isProfileOpen}
+                  onClose={() => setIsProfileOpen(false)}
+                />
                 <li className="cursor-pointer hover:bg-gray-100 p-1 flex items-center">
                   LogOut
                 </li>
@@ -64,7 +75,7 @@ const SideBar = () => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-[30%] h-10 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+          className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           placeholder="Search chats"
         />
       </div>
