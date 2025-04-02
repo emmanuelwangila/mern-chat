@@ -5,20 +5,20 @@ import { FaUserPlus } from "react-icons/fa";
 import { useChatState } from "../../Context/ChatProvider";
 
 import ProfileModel from "./ProfileModel";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
   const [filteredChats, setFilteredChats] = useState([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [loadChat, setLoadChat] = useState();
 
   const { user } = useChatState();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const logOut = () => {
     localStorage.removeItem("userInfo");
@@ -35,22 +35,10 @@ const SideBar = () => {
     setIsDropdownOpen(false);
   };
 
-  if (!isSidebarOpen) {
-    return (
-      <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="fixed top-4 left-4 bg-blue-500 text-white p-2 rounded-md "
-      >
-        Open Sidebar
-      </button>
-    );
-  }
-
   return (
     <div className="lg:flex-col md:flex-col sm:flex-wrap w-full h-full m-2 p-2">
       <div className="w-full text-yellow-500 m-1 bg-white mouse-pointer rounded-md flex justify-between items-center font-sans">
         <div className="flex-1 text-center">
-          <h3>KUja Home</h3>
           <span className="font-bold text-lg">Bumble Chat</span>
         </div>
         <div className="flex justify-end items-center space-x-4 relative">
@@ -94,19 +82,44 @@ const SideBar = () => {
         </div>
       </div>
       <div className="relative m-1">
-        <FaSearch className="left-3 absolute m-4 p-0.5 transform -translate-y-1/2 text-gray-400" />
+        <FaSearch
+          className="left-3 absolute m-4 p-0.5 transform -translate-y-1/2 text-gray-400"
+          onClick={() => setSearchModalOpen(true)}
+        />
+        {isSearchModalOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-50"
+            onClick={() => setSearchModalOpen(false)}
+          ></div>
+        )}
+
+        {isSearchModalOpen && (
+          <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-md z-20">
+            <div className="flex justify-between items-center">
+              <input
+                type="text"
+                onChange={handleSearch}
+                value={search}
+                className="w-full h-10 pl-4 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                placeholder="Search chats"
+              />
+              <button
+                onClick={() => setIsSearchModalOpen(false)}
+                className="ml-2 bg-red-500 text-white p-2 rounded-full"
+              >
+                <FaTimes />
+              </button>
+            </div>
+          </div>
+        )}
+
         <input
           type="text"
+          onChange={handleSearch}
           value={search}
           className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           placeholder="Search chats"
         />
-        <button
-          onClick={() => setIsSidebarOpen(false)}
-          className="absolute right-4 top-1/2  transform -translate-y-1/2 bg-red-500 text-white px-3 py-1 rounded-md "
-        >
-          <FaTimes />
-        </button>
       </div>
     </div>
   );
