@@ -50,6 +50,7 @@ const SideBar = () => {
     <div className="lg:flex-col md:flex-col sm:flex-wrap w-full h-full m-2 p-2">
       <div className="w-full text-yellow-500 m-1 bg-white mouse-pointer rounded-md flex justify-between items-center font-sans">
         <div className="flex-1 text-center">
+          <h3>KUja Home</h3>
           <span className="font-bold text-lg">Bumble Chat</span>
         </div>
         <div className="flex justify-end items-center space-x-4 relative">

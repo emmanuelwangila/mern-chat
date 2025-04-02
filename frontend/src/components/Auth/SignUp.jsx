@@ -31,42 +31,74 @@ const SignUp = () => {
     if (pics === undefined) {
       toast({
         title: "Please select an Image",
-        description: "add a  profile pic",
+        description: "Add a profile pic",
         status: "warning",
         duration: 9000,
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       return;
     }
 
-    if (pics.type === "image/png" || "image/jpg") {
+    if (
+      pics.type === "image/png" ||
+      pics.type === "image/jpeg" ||
+      pics.type === "image/jpg"
+    ) {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "mern-chat-app");
       data.append("cloud_name", "drwhws1cc");
+
       fetch("https://api.cloudinary.com/v1_1/drwhws1cc/image/upload", {
-        method: "post",
+        method: "POST",
         body: data,
       })
-        .then((res) => res.json)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
         .then((data) => {
-          setPic(data.url.toString());
+          if (data.url) {
+            setPic(data.url.toString());
+            toast({
+              title: "Image Uploaded",
+              description: "Profile picture uploaded successfully",
+              status: "success",
+              duration: 4000,
+              isClosable: true,
+              position: "bottom",
+            });
+          } else {
+            throw new Error("Failed to upload image");
+          }
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
+          toast({
+            title: "Error Uploading Image",
+            description: "Failed to upload the image. Please try again.",
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+            position: "bottom",
+          });
           setLoading(false);
         });
     } else {
       toast({
-        title: "Please select an Image",
-        description: "add a  profile pic",
+        title: "Invalid File Type",
+        description: "Please select a valid image file (PNG, JPG, JPEG)",
         status: "warning",
         duration: 9000,
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
     }
   };
 
