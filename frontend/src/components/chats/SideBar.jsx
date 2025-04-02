@@ -97,34 +97,35 @@ const SideBar = () => {
           <div className="" onClick={() => setSearchModalOpen(false)}></div>
         )}
 
+        {!isSearchModalOpen && (
+          <input
+            type="text"
+            onChange={handleSearch}
+            value={search}
+            className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+            placeholder="Search chats"
+          />
+        )}
+
         {isSearchModalOpen && (
-          <div className=" w-[40%] h-screen rounded-md  bg-white p-4 shadow-md z-20">
+          <div className=" w-[35%] h-screen rounded-md  bg-white p-4 shadow-md z-20">
             <div className="flex justify-between items-center">
               <input
-                onClick={() => setSearchModalOpen(true)}
                 type="text"
                 onChange={handleSearch}
                 value={search}
-                className="w-full h-10 pl-4 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                className="w-full h-5 pl-4 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 placeholder="Search chats"
               />
               <button
                 onClick={() => setSearchModalOpen(false)}
-                className="ml-2 bg-red-500 text-white p-2 rounded-full"
+                className="ml-2 bg-red-500 text-white p-2 rounded-md"
               >
                 <FaTimes />
               </button>
             </div>
           </div>
         )}
-
-        <input
-          type="text"
-          onChange={handleSearch}
-          value={search}
-          className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-          placeholder="Search chats"
-        />
       </div>
     </div>
   );
