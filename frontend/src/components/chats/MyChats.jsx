@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useChatState } from "../../Context/ChatProvider";
-import { position, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 const MyChats = () => {
   const [loggedUser, setLoggedUser] = useState();
-
   const { selectedChat, setSelectedChat, chats, setChats, user } =
     useChatState();
-
   const toast = useToast();
 
   const fetchChats = async () => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
       const { data } = await axios.get("/api/chats", config);
       setChats(data);
     } catch (error) {
-      console.log("Eror fetching chats");
       toast({
         title: "Error fetching chats",
         description: "Failed to fetch the chats",
         status: "error",
         duration: 4000,
-        isClosable: "true",
+        isClosable: true,
         position: "top-right",
       });
     }
@@ -40,8 +37,24 @@ const MyChats = () => {
   }, []);
 
   return (
-    <div className="text-blue-500">
-      <h1>My Chats</h1>
+    <div className="flex flex-col space-y-2">
+      {chats && chats.length > 0 ? (
+        chats.map((chat) => (
+          <div
+            key={chat._id}
+            onClick={() => setSelectedChat(chat)}
+            className={`p-3 rounded-md cursor-pointer ${
+              selectedChat?._id === chat._id
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100 text-gray-700"
+            } hover:bg-blue-400 hover:text-white`}
+          >
+            {chat.isGroupChat ? chat.chatName : chat.users[0].name}
+          </div>
+        ))
+      ) : (
+        <p className="text-gray-500">No chats available</p>
+      )}
     </div>
   );
 };
