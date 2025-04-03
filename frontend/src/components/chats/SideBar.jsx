@@ -117,6 +117,10 @@ const SideBar = () => {
                 className="w-full h-5 pl-4 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 placeholder="Search chats"
               />
+
+              <button className="m-1 p-1 text-sm text-white rounded-md  bg-blue-500">
+                search
+              </button>
               <button
                 onClick={() => setSearchModalOpen(false)}
                 className="ml-2 bg-red-500 text-white p-2 rounded-md"

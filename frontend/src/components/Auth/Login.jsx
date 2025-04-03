@@ -12,6 +12,7 @@ import { useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -25,9 +26,11 @@ const Login = () => {
 
   const handleClick = () => setShow(!show);
 
+  const { setUser } = useChatState();
+
   const submitHandler = async () => {
     setLoading(true);
-    if (!email || !password || !confirmpassword) {
+    if (!email || !password) {
       toast({
         title: "Please fill in the details",
         description: "add email, password, name",
@@ -61,6 +64,7 @@ const Login = () => {
         position: "bottom",
       });
       localStorage.setItem("UserInfo", JSON.stringify(data));
+      setUser(data);
       setLoading(false);
       history.push("/chats");
     } catch (error) {
@@ -95,26 +99,6 @@ const Login = () => {
             type={show ? "text" : "password"}
             placeholder={"enter your password"}
             onChange={(e) => setPassword(e.target.value)}
-          />
-          <InputRightElement w={"4.5rem"}>
-            <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-
-      <FormControl id="Password" isRequired>
-        <FormLabel className="text-blue-500 font-sans ">
-          {" "}
-          Confirm Password{" "}
-        </FormLabel>
-        <InputGroup size={"md"}>
-          <Input
-            className="font-sans text-sm  "
-            type={show ? "text" : "password"}
-            placeholder={"Confirm  Password"}
-            onChange={(e) => setconfirmPassword(e.target.value)}
           />
           <InputRightElement w={"4.5rem"}>
             <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>

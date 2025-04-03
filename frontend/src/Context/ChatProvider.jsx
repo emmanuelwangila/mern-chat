@@ -11,10 +11,6 @@ const ChatProvider = ({ children }) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (userInfo) {
       setUser(userInfo);
-    } else {
-      setTimeout(() => {
-        history.push("/");
-      }, 5000);
     }
   });
 
