@@ -3,8 +3,8 @@ import { FaSearch, FaTimes } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { useChatState } from "../../Context/ChatProvider";
-
 import ProfileModel from "./ProfileModel";
+import UserListItem from "./UserListItem";
 import { useHistory } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
@@ -12,20 +12,13 @@ import axios from "axios";
 const SideBar = () => {
   const [search, setSearch] = useState("");
   const [filteredChats, setFilteredChats] = useState([]);
-
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-
   const [loading, setLoading] = useState(false);
-  const [loadChat, setLoadChat] = useState();
 
   const { user } = useChatState();
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const history = useHistory();
-
   const toast = useToast();
 
   const logOut = () => {
@@ -37,12 +30,13 @@ const SideBar = () => {
     if (!search) {
       toast({
         title: "Please enter something in search",
-        description: "Type to search ",
+        description: "Type to search",
         status: "error",
         duration: 4000,
         isClosable: true,
         position: "top-left",
       });
+      return;
     }
 
     try {
@@ -53,23 +47,24 @@ const SideBar = () => {
         },
       };
 
-      const { data } = await axios.get(`/api/user?=${search}`, config);
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
       setLoading(false);
-      setSearch(data);
+      setFilteredChats(data); // Store filtered chats
     } catch (error) {
-      console.error("error searching results for the user");
+      console.error("Error searching results for the user");
       toast({
         title: "Error searching for the user",
-        description: "User search error ",
+        description: "User search error",
         status: "error",
         duration: 4000,
         isClosable: true,
         position: "bottom-left",
       });
+      setLoading(false);
     }
   };
 
-  const accesChats = () => {};
+  const accesChats = (userId) => {};
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -128,6 +123,7 @@ const SideBar = () => {
           )}
         </div>
       </div>
+
       <div className="relative m-1">
         <FaSearch
           className="left-3 absolute m-4 p-0.5 transform -translate-y-1/2 text-gray-400"
@@ -140,7 +136,7 @@ const SideBar = () => {
         {!isSearchModalOpen && (
           <input
             type="text"
-            onChange={handleSearch}
+            onChange={(e) => setSearch(e.target.value)} // Update the search input
             value={search}
             className="w-[30%] h-6 pl-12 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Search chats"
@@ -148,11 +144,11 @@ const SideBar = () => {
         )}
 
         {isSearchModalOpen && (
-          <div className=" w-[35%] h-screen rounded-md  bg-white p-4 shadow-md z-20">
+          <div className="w-[35%] h-screen rounded-md bg-white p-4 shadow-md z-20">
             <div className="flex justify-between items-center">
               <input
                 type="text"
-                onChange={handleSearch}
+                onChange={(e) => setSearch(e.target.value)} // Update the search input
                 value={search}
                 className="w-full h-5 pl-4 font-sans rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                 placeholder="Search chats"
@@ -160,19 +156,24 @@ const SideBar = () => {
 
               <button
                 onClick={handleSearch}
-                className="m-1 p-1 text-sm text-white rounded-md  bg-blue-500"
+                className="m-1 p-1 text-sm text-white rounded-md bg-blue-500"
               >
-                search
+                Search
               </button>
 
-              {setLoading(true) &&
-                setSearch?.map((user) => {
-                  <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleChats={() => accesChats(user._id)}
-                  />;
-                })}
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                <div>
+                  {filteredChats.map((user) => (
+                    <UserListItem
+                      key={user._id}
+                      user={user}
+                      handleChats={() => accesChats(user._id)}
+                    />
+                  ))}
+                </div>
+              )}
 
               <button
                 onClick={() => setSearchModalOpen(false)}
