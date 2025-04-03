@@ -22,15 +22,15 @@ const MyChats = () => {
       const { data } = await axios.get("/api/chats", config);
       setChats(data);
     } catch (error) {
-      console.error("Error fetching the chats"),
-        toast({
-          title: "Error fetching chats",
-          description: "Failed to fetch the chats",
-          status: "error",
-          duration: 4000,
-          isClosable: "true",
-          position: "top-right",
-        });
+      console.log("Eror fetching chats");
+      toast({
+        title: "Error fetching chats",
+        description: "Failed to fetch the chats",
+        status: "error",
+        duration: 4000,
+        isClosable: "true",
+        position: "top-right",
+      });
     }
   };
 

@@ -71,11 +71,13 @@ const SideBar = () => {
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearere ${userId.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
-      const { data } = await axios.post("/api/chat", userId, config);
+      const { data } = await axios.post("/api/chats", { userId }, config);
+      console.log("Back-end response", data);
+      console.log("userId:", userId);
 
       if (!chats.find((c) => c.id === data._id)) setChats([data, ...chats]);
 
