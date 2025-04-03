@@ -156,7 +156,7 @@ const SideBar = () => {
 
               <button
                 onClick={handleSearch}
-                className="m-1 p-1 text-sm text-white rounded-md bg-blue-500"
+                className="m-1 fixed top-12 mr-10  p-1 text-sm text-white rounded-md bg-blue-500"
               >
                 Search
               </button>
