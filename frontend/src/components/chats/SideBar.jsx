@@ -17,7 +17,7 @@ const SideBar = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
 
-  const { user, setSelectedChat } = useChatState();
+  const { user, setSelectedChat, chats, setChats } = useChatState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const history = useHistory();
   const toast = useToast();
@@ -78,8 +78,17 @@ const SideBar = () => {
       const { data } = await axios.post("/api/chat", userId, config);
       setSelectedChat(data);
       setLoadingChat(false);
-      onClose();
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error accesing the chats");
+      toast({
+        title: "Error fetching the chats",
+        description: "Fetch chats error",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top-left",
+      });
+    }
   };
 
   const toggleDropdown = () => {
