@@ -7,6 +7,7 @@ import { useChatState } from "../../Context/ChatProvider";
 import ProfileModel from "./ProfileModel";
 import { useHistory } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import axios from "axios";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
@@ -32,7 +33,7 @@ const SideBar = () => {
     history.push("/");
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!search) {
       toast({
         title: "Please enter something in search",
@@ -40,10 +41,35 @@ const SideBar = () => {
         status: "error",
         duration: 4000,
         isClosable: true,
-        position: "bottom",
+        position: "top-left",
+      });
+    }
+
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/user?=${search}`, config);
+      setLoading(false);
+      setSearch(data);
+    } catch (error) {
+      console.error("error searching results for the user");
+      toast({
+        title: "Error searching for the user",
+        description: "User search error ",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom-left",
       });
     }
   };
+
+  const accesChats = () => {};
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -138,6 +164,16 @@ const SideBar = () => {
               >
                 search
               </button>
+
+              {setLoading(true) &&
+                setSearch?.map((user) => {
+                  <UserListItem
+                    key={user._id}
+                    user={user}
+                    handleChats={() => accesChats(user._id)}
+                  />;
+                })}
+
               <button
                 onClick={() => setSearchModalOpen(false)}
                 className="ml-2 bg-red-500 text-white p-2 rounded-md"
