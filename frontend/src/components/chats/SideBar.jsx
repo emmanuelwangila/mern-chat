@@ -6,6 +6,7 @@ import { useChatState } from "../../Context/ChatProvider";
 
 import ProfileModel from "./ProfileModel";
 import { useHistory } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
@@ -24,12 +25,25 @@ const SideBar = () => {
 
   const history = useHistory();
 
+  const toast = useToast();
+
   const logOut = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    if (!search) {
+      toast({
+        title: "Please enter something in search",
+        description: "Type to search ",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -118,7 +132,10 @@ const SideBar = () => {
                 placeholder="Search chats"
               />
 
-              <button className="m-1 p-1 text-sm text-white rounded-md  bg-blue-500">
+              <button
+                onClick={handleSearch}
+                className="m-1 p-1 text-sm text-white rounded-md  bg-blue-500"
+              >
                 search
               </button>
               <button
