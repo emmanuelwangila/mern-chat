@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useChatState } from "../../Context/ChatProvider";
 import { position, useToast } from "@chakra-ui/react";
 import axios from "axios";
@@ -33,6 +33,11 @@ const MyChats = () => {
         });
     }
   };
+
+  useEffect(() => {
+    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+    fetchChats();
+  }, []);
 
   return (
     <div className="text-blue-500">
