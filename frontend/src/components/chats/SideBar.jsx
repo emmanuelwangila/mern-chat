@@ -15,8 +15,9 @@ const SideBar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingChat, setLoadingChat] = useState(false);
 
-  const { user } = useChatState();
+  const { user, setSelectedChat } = useChatState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const history = useHistory();
   const toast = useToast();
@@ -64,7 +65,22 @@ const SideBar = () => {
     }
   };
 
-  const accesChats = (userId) => {};
+  const accesChats = async (userId) => {
+    try {
+      setLoadingChat(true);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearere ${userId.token}`,
+        },
+      };
+
+      const { data } = await axios.post("/api/chat", userId, config);
+      setSelectedChat(data);
+      setLoadingChat(false);
+      onClose();
+    } catch (error) {}
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
