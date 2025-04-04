@@ -14,11 +14,19 @@ function Chat() {
         {user && <SideBar />}
       </div>
 
-      <div className="flex  justify-between m-2 p-2    rounded-md bg-white rounded-md text-byellow -500">
-        {user && <MyChats />}
-      </div>
-      <div className="flex   justify-between m-2 p-2    rounded-md bg-white rounded-md text-byellow -500">
-        {user && <ChatInputBody />}
+      <div className="w-full flex flex-col p-4">
+        {/* MyChats and ChatInputBody in flex layout */}
+        <div className="flex h-full">
+          {/* MyChats */}
+          <div className="w-2/5 bg-gray-100 rounded-md shadow-md p-4 overflow-y-auto">
+            {user && <MyChats />}
+          </div>
+
+          {/* ChatInputBody */}
+          <div className="w-3/5 bg-white rounded-md shadow-md p-4 ml-4 overflow-y-auto">
+            {user && <ChatInputBody />}
+          </div>
+        </div>
       </div>
     </div>
   );
