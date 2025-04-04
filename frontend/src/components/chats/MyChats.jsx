@@ -37,18 +37,19 @@ const MyChats = () => {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex   space-y-2">
       {chats && chats.length > 0 ? (
         chats.map((chat) => (
           <div
             key={chat._id}
             onClick={() => setSelectedChat(chat)}
-            className={`p-3 rounded-md cursor-pointer ${
+            className={`p-3 font-sans  rounded-md cursor-pointer ${
               selectedChat?._id === chat._id
-                ? "bg-blue-500 text-white"
+                ? "bg-gray-200 border   text-yellow-500"
                 : "bg-gray-100 text-gray-700"
             } hover:bg-blue-400 hover:text-white`}
           >
+            <h2>My Chats</h2>
             {chat.isGroupChat ? chat.chatName : chat.users[0].name}
           </div>
         ))

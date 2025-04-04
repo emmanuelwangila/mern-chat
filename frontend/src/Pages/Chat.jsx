@@ -9,10 +9,15 @@ function Chat() {
   const { user } = useChatState();
 
   return (
-    <div className="w-[100%]  fot-sans  bg-slate-100 m-3 p-3 rounded-md text-blue-500">
-      {user && <SideBar />}
-      <div className="m-2 p-2  rounded-md bg-red-500 rounded-md text-blue-500">
+    <div className="w-full h-screen overflow-hidden    fot-sans  bg-slate-100 m-3 p-3 rounded-md text-blue-500">
+      <div className="flex justify-start m-2 p-2 rounded-md ">
+        {user && <SideBar />}
+      </div>
+
+      <div className="flex  justify-between m-2 p-2    rounded-md bg-white rounded-md text-byellow -500">
         {user && <MyChats />}
+      </div>
+      <div className="flex   justify-between m-2 p-2    rounded-md bg-white rounded-md text-byellow -500">
         {user && <ChatInputBody />}
       </div>
     </div>
