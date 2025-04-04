@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useChatState } from "../../Context/ChatProvider";
-import { useToast } from "@chakra-ui/react";
+import { position, useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 const GroupChatMOdel = ({ isOpen, onClose }) => {
@@ -88,7 +88,24 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
         config
       );
       setChats([data, ...chats]);
-    } catch (error) {}
+      toast({
+        title: "New Group Created",
+        status: "success",
+        duration: 4000,
+        isClosable: "true",
+        position: "top-right",
+      });
+    } catch (error) {
+      toast({
+        title: "Error creating group chat",
+        description:
+          error.response?.data?.message || "Failed to create group chat",
+        status: "error",
+        duration: 4000,
+        isClosable: "true",
+        position: "top-right",
+      });
+    }
   };
 
   return <div></div>;
