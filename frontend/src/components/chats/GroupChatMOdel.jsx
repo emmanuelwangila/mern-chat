@@ -112,29 +112,29 @@ const GroupChatModel = ({ isOpen, onClose }) => {
     isOpen && (
       <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
         <div className="bg-white rounded-md w-[30%] p-4 shadow-md">
-          <h2 className="text-blue-500 mb-4">Create Group Chat</h2>
+          <h2 className="text-blue-500 font-sans  mb-4">Create Group Chat</h2>
           <input
             type="text"
             placeholder="Group Name"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            className="w-full mb-3 p-2 border rounded-md border-gray-200"
+            className="w-full mb-2 p-1 font-sans  border rounded-md border-gray-200"
           />
           <input
             type="text"
             placeholder="Search for users"
             value={search} // Correct binding
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full mb-3 p-2 border rounded-md border-gray-200"
+            className="w-full mb-2  font-sans p-1 border rounded-md border-gray-200"
           />
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <div className="flex flex-col m-2 p-2">
+            <div className="flex font-sans  flex-col m-2 p-2">
               {searchResults.map((user) => (
                 <div
                   key={user._id}
-                  className="flex items-center justify-between p-2 m-1 border cursor-pointer hover:bg-gray-100"
+                  className="flex items-center font-sans  justify-between p-2 m-1 rounded-md  border cursor-pointer hover:bg-gray-100"
                   onClick={() => handleAddUser(user)}
                 >
                   <span>{user.name}</span>
@@ -142,7 +142,7 @@ const GroupChatModel = ({ isOpen, onClose }) => {
               ))}
             </div>
           )}
-          <div className="bg-gray-300 flex flex-col m-2 p-2">
+          <div className="bg-gray-300 rounded-md font-sans   flex flex-col m-2 p-2">
             <h3 className="m-2 p-2 text-blue-500 font-sans">Selected Users</h3>
             <div className="flex flex-wrap">
               {selectedUsers.map((user) => (
@@ -161,7 +161,7 @@ const GroupChatModel = ({ isOpen, onClose }) => {
               ))}
             </div>
           </div>
-          <div className="flex justify-end mt-4">
+          <div className="flex font-sans  justify-end mt-4">
             <button
               onClick={onClose}
               className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
@@ -170,7 +170,7 @@ const GroupChatModel = ({ isOpen, onClose }) => {
             </button>
             <button
               onClick={handleSubmit}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="bg-blue-500 text-white px-3 py-2 rounded-md"
             >
               Create Group
             </button>
