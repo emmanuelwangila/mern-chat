@@ -42,6 +42,55 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleAddUser = (user) => {
+    if (selectedUsers.find((u) => u._id === user._id)) {
+      toast({
+        title: "User already added",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+      });
+      return;
+    }
+    setSelectedUsers([...selectedUsers, user]);
+  };
+
+  const deleteUser = (user) => {
+    setSelectedUsers(selectedUsers.filter((u) => u._id !== user._id));
+  };
+
+  const handleSubmit = async () => {
+    if (!groupName || !selectedUsers) {
+      toast({
+        title: "PLease fill in the details",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+      });
+      return;
+    }
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.toke}`,
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/chats/group",
+        {
+          name: groupName,
+          users: selectedUsers.map((u) => u._id),
+        },
+        config
+      );
+      setChats([data, ...chats]);
+    } catch (error) {}
+  };
+
   return <div></div>;
 };
 
