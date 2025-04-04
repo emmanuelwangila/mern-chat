@@ -46,9 +46,16 @@ const MyChats = () => {
         <h2 className="text-blue-500 text-sm  font-sans flex justify-center">
           My Chats
         </h2>
-        <button className="flex text-sm font-sans m-1    justify-end border border-2 rounded-md text-white bg-blue-500  m-1 ">
+        <button
+          onClick={() => setGroupChatOpen(true)}
+          className="flex text-sm font-sans m-1    justify-end border border-2 rounded-md text-white bg-blue-500  m-1 "
+        >
           New Group Chat +
         </button>
+        <GroupChatMOdel
+          isOpen={groupChatOpen}
+          onClose={() => setGroupChatOpen(false)}
+        />
       </div>
 
       {chats && chats.length > 0 ? (

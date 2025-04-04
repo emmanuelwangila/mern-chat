@@ -14,7 +14,7 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
 
   const toast = useToast();
 
-  const handleSearch = async () => {
+  const handleSearch = async (query) => {
     setSearch(query);
     if (!query) return;
 
@@ -143,6 +143,39 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
               ;
             </div>
           )}
+          <div className="flex bg-gray-300 flex-col m-2 p-2 ">
+            <h3 className="m-2 p-2 text-blue-500 font-sans">Selected Users</h3>
+            <div className="flex flex-warp">
+              {selectedUsers.map((user) => (
+                <div
+                  key={user._id}
+                  className="flex items-center bg-blue-500 text-white rounded -md px-2 py-2 "
+                >
+                  <span> {user.name} </span>
+                  <button
+                    className="ml-2 text-white bg-blue-500 rounded-md p-2 m-2  text-sm"
+                    onClick={() => deleteUser(user)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex-col  m-2 p-2 ">
+          <button
+            onClick={onClose}
+            className="bg-red-500  text-white px-3 py-2 rounded-md mr-3"
+          >
+            Close
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 text-white px-3 py-2 rounded-md mr-3"
+          >
+            Create Group
+          </button>
         </div>
       </div>
     )
