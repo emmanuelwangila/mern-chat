@@ -56,7 +56,7 @@ const MyChats = () => {
             onClick={() => setSelectedChat(chat)}
             className={`p-2 font-sans  rounded-md cursor-pointer ${
               selectedChat?._id === chat._id
-                ? "bg-gray-200 border   text-yellow-500"
+                ? "bg-blue-500 border   text-white"
                 : "bg-gray-100 text-gray-700"
             } hover:bg-blue-300 hover:text-white`}
           >
