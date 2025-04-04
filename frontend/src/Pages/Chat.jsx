@@ -18,7 +18,7 @@ function Chat() {
         {/* MyChats and ChatInputBody in flex layout */}
         <div className="flex h-full">
           {/* MyChats */}
-          <div className="w-2/5 bg-gray-100 rounded-md shadow-md p-4 overflow-y-auto">
+          <div className="w-2/5 bg-green-300 rounded-md shadow-md p-4 overflow-y-auto">
             {user && <MyChats />}
           </div>
 

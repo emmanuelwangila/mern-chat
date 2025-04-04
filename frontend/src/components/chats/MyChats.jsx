@@ -37,7 +37,13 @@ const MyChats = () => {
   }, []);
 
   return (
-    <div className="flex   space-y-2">
+    <div className="flex-col     space-y-2">
+      <div className="flex justify-center m-2 p-2 ">
+        <h2 className="text-blue-500 font-sans flex justify-center">
+          My Chats
+        </h2>
+      </div>
+
       {chats && chats.length > 0 ? (
         chats.map((chat) => (
           <div
@@ -49,7 +55,6 @@ const MyChats = () => {
                 : "bg-gray-100 text-gray-700"
             } hover:bg-blue-400 hover:text-white`}
           >
-            <h2>My Chats</h2>
             {chat.isGroupChat ? chat.chatName : chat.users[0].name}
           </div>
         ))
