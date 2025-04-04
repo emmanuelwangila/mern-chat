@@ -7,6 +7,7 @@ import ProfileModel from "./ProfileModel";
 import UserListItem from "./UserListItem";
 import { useHistory } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+
 import axios from "axios";
 
 const SideBar = () => {

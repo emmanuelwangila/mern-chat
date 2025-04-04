@@ -3,6 +3,8 @@ import { useChatState } from "../../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
+import { getSender } from "../../config/ChatLogic";
+
 const MyChats = () => {
   const [loggedUser, setLoggedUser] = useState();
   const { selectedChat, setSelectedChat, chats, setChats, user } =
@@ -32,14 +34,14 @@ const MyChats = () => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+    setLoggedUser(JSON.parse(localStorage.getItem("UserInfo")));
     fetchChats();
   }, []);
 
   return (
     <div className="flex-col     space-y-2">
       <div className="flex justify-between  m-2 p-2 ">
-        <h2 className="text-blue-500 font-sans flex justify-center">
+        <h2 className="text-blue-500 text-sm  font-sans flex justify-center">
           My Chats
         </h2>
         <button className="flex text-sm font-sans m-1    justify-end border border-2 rounded-md text-white bg-blue-500  m-1 ">
@@ -58,7 +60,9 @@ const MyChats = () => {
                 : "bg-gray-100 text-gray-700"
             } hover:bg-blue-300 hover:text-white`}
           >
-            {chat.isGroupChat ? chat.chatName : chat.users[0].name}
+            {!chat.isGroupChat
+              ? getSender(loggedUser, chat.users)
+              : chat.chatName}
           </div>
         ))
       ) : (
