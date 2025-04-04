@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useChatState } from "../../Context/ChatProvider";
-import { position, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
-const GroupChatMOdel = ({ isOpen, onClose }) => {
+const GroupChatModel = ({ isOpen, onClose }) => {
   const [groupName, setGroupName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -11,7 +11,6 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
 
   const { user, chats, setChats } = useChatState();
-
   const toast = useToast();
 
   const handleSearch = async (query) => {
@@ -61,9 +60,9 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = async () => {
-    if (!groupName || !selectedUsers) {
+    if (!groupName || selectedUsers.length === 0) {
       toast({
-        title: "PLease fill in the details",
+        title: "Please fill in the details",
         status: "warning",
         duration: 4000,
         isClosable: true,
@@ -75,7 +74,7 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${user.toke}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
 
@@ -92,9 +91,10 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
         title: "New Group Created",
         status: "success",
         duration: 4000,
-        isClosable: "true",
+        isClosable: true,
         position: "top-right",
       });
+      onClose();
     } catch (error) {
       toast({
         title: "Error creating group chat",
@@ -102,7 +102,7 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
           error.response?.data?.message || "Failed to create group chat",
         status: "error",
         duration: 4000,
-        isClosable: "true",
+        isClosable: true,
         position: "top-right",
       });
     }
@@ -110,76 +110,75 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
 
   return (
     isOpen && (
-      <div className="fixed inset-0 flex justify-center items-center z-5">
+      <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
         <div className="bg-white rounded-md w-[30%] p-4 shadow-md">
-          <h2 className="text-blue-500">Create Group Chat</h2>
+          <h2 className="text-blue-500 mb-4">Create Group Chat</h2>
           <input
             type="text"
             placeholder="Group Name"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            className="w-[60% mb-3 p-2 border rounded-md border-gray-200"
+            className="w-full mb-3 p-2 border rounded-md border-gray-200"
           />
           <input
             type="text"
             placeholder="Search for users"
-            value={groupName}
+            value={search} // Correct binding
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-[60% mb-3 p-2 border rounded-md border-gray-200"
+            className="w-full mb-3 p-2 border rounded-md border-gray-200"
           />
           {loading ? (
-            <div>Loading ...</div>
+            <div>Loading...</div>
           ) : (
-            <div className="flex flex-col m-2 p-2 ">
-              {searchResults.map((user) => {
+            <div className="flex flex-col m-2 p-2">
+              {searchResults.map((user) => (
                 <div
                   key={user._id}
-                  className="flex items-center justify-between p-2 m-1 border"
+                  className="flex items-center justify-between p-2 m-1 border cursor-pointer hover:bg-gray-100"
                   onClick={() => handleAddUser(user)}
                 >
                   <span>{user.name}</span>
-                </div>;
-              })}
-              ;
+                </div>
+              ))}
             </div>
           )}
-          <div className="flex bg-gray-300 flex-col m-2 p-2 ">
+          <div className="bg-gray-300 flex flex-col m-2 p-2">
             <h3 className="m-2 p-2 text-blue-500 font-sans">Selected Users</h3>
-            <div className="flex flex-warp">
+            <div className="flex flex-wrap">
               {selectedUsers.map((user) => (
                 <div
                   key={user._id}
-                  className="flex items-center bg-blue-500 text-white rounded -md px-2 py-2 "
+                  className="flex items-center bg-blue-500 text-white rounded-md px-2 py-1 m-1"
                 >
-                  <span> {user.name} </span>
+                  <span>{user.name}</span>
                   <button
-                    className="ml-2 text-white bg-blue-500 rounded-md p-2 m-2  text-sm"
+                    className="ml-2 text-sm text-white bg-red-500 rounded-md px-2"
                     onClick={() => deleteUser(user)}
                   >
-                    Delete
+                    ✕
                   </button>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-        <div className="flex-col  m-2 p-2 ">
-          <button
-            onClick={onClose}
-            className="bg-red-500  text-white px-3 py-2 rounded-md mr-3"
-          >
-            Close
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white px-3 py-2 rounded-md mr-3"
-          >
-            Create Group
-          </button>
+          <div className="flex justify-end mt-4">
+            <button
+              onClick={onClose}
+              className="bg-red-500 text-white px-4 py-2 rounded-md mr-2"
+            >
+              Close
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            >
+              Create Group
+            </button>
+          </div>
         </div>
       </div>
     )
   );
 };
 
-export default GroupChatMOdel;
+export default GroupChatModel;
