@@ -108,7 +108,45 @@ const GroupChatMOdel = ({ isOpen, onClose }) => {
     }
   };
 
-  return <div></div>;
+  return (
+    isOpen && (
+      <div className="fixed inset-0 flex justify-center items-center z-5">
+        <div className="bg-white rounded-md w-[30%] p-4 shadow-md">
+          <h2 className="text-blue-500">Create Group Chat</h2>
+          <input
+            type="text"
+            placeholder="Group Name"
+            value={groupName}
+            onChange={(e) => setGroupName(e.target.value)}
+            className="w-[60% mb-3 p-2 border rounded-md border-gray-200"
+          />
+          <input
+            type="text"
+            placeholder="Search for users"
+            value={groupName}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="w-[60% mb-3 p-2 border rounded-md border-gray-200"
+          />
+          {loading ? (
+            <div>Loading ...</div>
+          ) : (
+            <div className="flex flex-col m-2 p-2 ">
+              {searchResults.map((user) => {
+                <div
+                  key={user._id}
+                  className="flex items-center justify-between p-2 m-1 border"
+                  onClick={() => handleAddUser(user)}
+                >
+                  <span>{user.name}</span>
+                </div>;
+              })}
+              ;
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  );
 };
 
 export default GroupChatMOdel;
