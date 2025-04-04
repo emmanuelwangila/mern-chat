@@ -1,0 +1,48 @@
+import React, { useState } from "react";
+import { useChatState } from "../../Context/ChatProvider";
+import { useToast } from "@chakra-ui/react";
+import axios from "axios";
+
+const GroupChatMOdel = ({ isOpen, onClose }) => {
+  const [groupName, setGroupName] = useState("");
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const { user, chats, setChats } = useChatState();
+
+  const toast = useToast();
+
+  const handleSearch = async () => {
+    setSearch(query);
+    if (!query) return;
+
+    try {
+      setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/user?search=${query}`, config);
+      setSearchResults(data);
+      setLoading(false);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to load search results",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+      });
+      setLoading(false);
+    }
+  };
+
+  return <div></div>;
+};
+
+export default GroupChatMOdel;

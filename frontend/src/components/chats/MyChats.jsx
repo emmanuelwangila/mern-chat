@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useChatState } from "../../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
+import GroupChatMOdel from "./GroupChatMOdel";
 
 import { getSender } from "../../config/ChatLogic";
 
 const MyChats = () => {
   const [loggedUser, setLoggedUser] = useState();
+  const [groupChatOpen, setGroupChatOpen] = useState(false);
   const { selectedChat, setSelectedChat, chats, setChats, user } =
     useChatState();
   const toast = useToast();
