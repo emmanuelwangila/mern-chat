@@ -38,10 +38,13 @@ const MyChats = () => {
 
   return (
     <div className="flex-col     space-y-2">
-      <div className="flex justify-center m-2 p-2 ">
+      <div className="flex justify-between  m-2 p-2 ">
         <h2 className="text-blue-500 font-sans flex justify-center">
           My Chats
         </h2>
+        <button className="flex text-sm font-sans m-1    justify-end border border-2 rounded-md text-white bg-blue-500  m-1 ">
+          New Group Chat +
+        </button>
       </div>
 
       {chats && chats.length > 0 ? (
@@ -49,11 +52,11 @@ const MyChats = () => {
           <div
             key={chat._id}
             onClick={() => setSelectedChat(chat)}
-            className={`p-3 font-sans  rounded-md cursor-pointer ${
+            className={`p-2 font-sans  rounded-md cursor-pointer ${
               selectedChat?._id === chat._id
                 ? "bg-gray-200 border   text-yellow-500"
                 : "bg-gray-100 text-gray-700"
-            } hover:bg-blue-400 hover:text-white`}
+            } hover:bg-blue-300 hover:text-white`}
           >
             {chat.isGroupChat ? chat.chatName : chat.users[0].name}
           </div>
