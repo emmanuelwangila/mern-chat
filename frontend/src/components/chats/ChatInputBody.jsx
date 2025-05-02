@@ -1,7 +1,7 @@
 import React from "react";
 import { useChatState } from "../../Context/ChatProvider";
 
-const ChatInputBody = () => {
+const ChatInputBody = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat } = useChatState();
 
   return (
@@ -18,7 +18,11 @@ const ChatInputBody = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 bg-gray-100 p-4 font-sans text-sm  overflow-y-auto">
+      <div
+        fetchAgain={fetchAgain}
+        setFetchAgain={setFetchAgain}
+        className="flex-1 bg-gray-100 p-4 font-sans text-sm  overflow-y-auto"
+      >
         {selectedChat ? (
           <p>
             Messages for {selectedChat.chatName || selectedChat.users[0].name}
