@@ -6,7 +6,7 @@ import GroupChatMOdel from "./GroupChatMOdel";
 
 import { getSender } from "../../config/ChatLogic";
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
   const [groupChatOpen, setGroupChatOpen] = useState(false);
   const { selectedChat, setSelectedChat, chats, setChats, user } =
@@ -38,7 +38,7 @@ const MyChats = () => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("UserInfo")));
     fetchChats();
-  }, []);
+  }, [fetchAgain]);
 
   return (
     <div className="flex-col     space-y-2">

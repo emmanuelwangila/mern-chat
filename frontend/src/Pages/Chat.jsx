@@ -20,9 +20,7 @@ function Chat() {
         <div className="flex h-full">
           {/* MyChats */}
           <div className="w-2/5 bg-green-300 rounded-md shadow-md p-4 overflow-y-auto">
-            {user && (
-              <MyChats fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
-            )}
+            {user && <MyChats fetchAgain={fetchAgain} />}
           </div>
 
           {/* ChatInputBody */}
